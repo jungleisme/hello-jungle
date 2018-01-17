@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 修改动态方法的调用,true 动态方法，false 非动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	
+    <package name="default" namespace="/" extends="struts-default">
+    
+    	<!--http://localhost:8080/user_struts_hibernate/user!do_query  -->
+		<action name="user!*" class="userAction" method="{1}">
+			<result name="list">/list.jsp</result>
+			<result name="save">/save.jsp</result>
+			<result name="edit" type="redirectAction">user!do_query</result>
+			<result name="to_edit" >/edit.jsp</result>
+			<result name="remove" type="redirectAction">user!do_query</result>
+		</action>
+    </package>
+</struts>
